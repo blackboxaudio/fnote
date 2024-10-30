@@ -1,3 +1,15 @@
-# template
+# `fnote`
 
-This is a generic template repository to be used for any future project.
+> CLI tool for converting musical notes and frequencies 🧮
+
+## Overview
+
+...
+
+## Getting Started 
+
+...
+
+## Using `fnote`
+
+...
