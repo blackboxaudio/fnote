@@ -3,4 +3,10 @@ pub type FNoteResult<T> = std::result::Result<T, FNoteError>;
 
 /// Error variants for the `fnote` program.
 #[derive(Debug, PartialEq, thiserror::Error)]
-pub enum FNoteError {}
+pub enum FNoteError {
+    #[error("Unknown command")]
+    UnknownCommand,
+
+    #[error("Invalid MIDI note number \"{0}\"")]
+    InvalidMidiNoteNumber(String),
+}
