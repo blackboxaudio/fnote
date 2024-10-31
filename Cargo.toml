@@ -3,7 +3,7 @@ name = "fnote"
 version = "0.1.0"
 edition = "2021"
 authors = ["Matthew Maxwell"]
-description = "CLI tool for converting frequencies and musical notes"
+description = "CLI tool for converting musical notes, frequencies, and MIDI"
 
 [dependencies]
 async-trait = "0.1.83"
