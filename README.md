@@ -1,7 +1,6 @@
 # `fnote`
 
-[![Lint](https://github.com/blackboxaudio/fnote/actions/workflows/ci.lint.yml/badge.svg)](https://github.com/blackboxaudio/fnote/actions/workflows/ci.lint.yml)
-[![Format](https://github.com/blackboxaudio/fnote/actions/workflows/ci.fmt.yml/badge.svg)](https://github.com/blackboxaudio/fnote/actions/workflows/ci.fmt.yml)
+[![Build](https://github.com/blackboxaudio/fnote/actions/workflows/ci.build.yml/badge.svg)](https://github.com/blackboxaudio/fnote/actions/workflows/ci.build.yml)
 [![Version: v0.1.0](https://img.shields.io/badge/Version-v0.1.0-blue.svg)](https://github.com/blackboxaudio/fnote)
 [![License](https://img.shields.io/badge/License-MIT-yellow)](https://github.com/blackboxaudio/fnote/blob/develop/LICENSE)
 
