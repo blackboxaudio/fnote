@@ -22,13 +22,14 @@ impl Command for MidiCommand {
             "Note: {}",
             midi_note_number_to_music_note(self.midi_note_number).unwrap()
         );
+        println!("Frequency: {} Hz", midi_note_number_to_frequency(self.midi_note_number));
 
         Ok(())
     }
 }
 
 /// Converts a MIDI note number to a music note.
-fn midi_note_number_to_music_note(midi_note_number: u8) -> Option<String> {
+pub(crate) fn midi_note_number_to_music_note(midi_note_number: u8) -> Option<String> {
     let semitone_to_note = ["C", "C#", "D", "Eb", "E", "F", "F#", "G", "Ab", "A", "Bb", "B"];
 
     let octave = (midi_note_number / 12) as i8 - 1;
@@ -36,6 +37,12 @@ fn midi_note_number_to_music_note(midi_note_number: u8) -> Option<String> {
     let note = semitone_to_note.get(semitone_offset).unwrap();
 
     Some(format!("{}{}", note, octave))
+}
+
+/// Converts a MIDI note number to a frequency (Hz).
+pub(crate) fn midi_note_number_to_frequency(midi_note_number: u8) -> f32 {
+    let frequency = 440.0 * 2.0f32.powf((midi_note_number as f32 - 69.0) / 12.0);
+    (frequency * 100.0).round() / 100.0
 }
 
 /// Parses a MIDI note number from a string.

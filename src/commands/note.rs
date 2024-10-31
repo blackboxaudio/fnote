@@ -3,6 +3,7 @@ use regex::Regex;
 
 use crate::{
     cli::Command,
+    commands::midi::midi_note_number_to_frequency,
     error::{FNoteError, FNoteResult},
 };
 
@@ -17,14 +18,18 @@ pub struct NoteCommand {
 #[async_trait]
 impl Command for NoteCommand {
     async fn run(&self) -> FNoteResult<()> {
+        let midi_note_number = music_note_to_midi_note_number(self.music_note.as_str())?;
+        let frequency = midi_note_number_to_frequency(midi_note_number);
+
         println!("Note: {}", self.music_note);
-        println!("MIDI: {}", music_note_to_midi_note_number(self.music_note.as_str())?);
+        println!("MIDI: {}", midi_note_number);
+        println!("Frequency: {} Hz", frequency);
 
         Ok(())
     }
 }
 
-// TODO: Doesn't work inputs like b#-1, which is 0 but should be 11. Also doesn't work for inputs greater than G9.
+// TODO: Better UX for valid music notes outside of MIDI value range.
 /// Converts a music note to a MIDI note number.
 fn music_note_to_midi_note_number(music_note: &str) -> FNoteResult<u8> {
     let note_to_semitone = [
