@@ -1,10 +1,10 @@
 use async_trait::async_trait;
-use regex::Regex;
 
 use crate::{
     cli::Command,
-    commands::midi::{midi_note_number_to_frequency, midi_note_number_to_music_note},
-    error::{FNoteError, FNoteResult},
+    convert::{frequency_to_midi_note, midi_note_number_to_frequency, midi_note_number_to_music_note},
+    error::FNoteResult,
+    parse::try_frequency_from_str,
 };
 
 /// Extracts the (nearest) MIDI note number and music note from a frequency.
@@ -35,24 +35,5 @@ impl Command for FreqCommand {
         println!("MIDI: {}", midi_note_number);
 
         Ok(())
-    }
-}
-
-/// Converts a frequency to the nearest MIDI note number.
-pub(crate) fn frequency_to_midi_note(frequency: f32) -> Option<u8> {
-    let midi_note = 69.0 + 12.0 * (frequency / 440.0).log2();
-    if (0..=127).contains(&(midi_note.round() as i32)) {
-        Some(midi_note.round() as u8)
-    } else {
-        None
-    }
-}
-
-fn try_frequency_from_str(arg: &str) -> FNoteResult<f32> {
-    let regex = Regex::new(r"^\d+(\.\d+)?$").unwrap();
-    if regex.is_match(arg) {
-        Ok(arg.parse::<f32>().unwrap())
-    } else {
-        Err(FNoteError::InvalidFrequency(arg.to_string()))
     }
 }
