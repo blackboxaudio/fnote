@@ -2,7 +2,7 @@ use async_trait::async_trait;
 
 use crate::{
     cli::Command,
-    convert::{midi_note_number_to_frequency, music_note_to_midi_note_number},
+    convert::{convert_midi_note_number_to_frequency, convert_music_note_to_midi_note_number},
     error::FNoteResult,
     parse::try_music_note_from_str,
 };
@@ -18,8 +18,8 @@ pub struct NoteCommand {
 #[async_trait]
 impl Command for NoteCommand {
     async fn run(&self) -> FNoteResult<()> {
-        let midi_note_number = music_note_to_midi_note_number(self.music_note.as_str())?;
-        let frequency = midi_note_number_to_frequency(midi_note_number);
+        let midi_note_number = convert_music_note_to_midi_note_number(self.music_note.as_str())?;
+        let frequency = convert_midi_note_number_to_frequency(midi_note_number);
 
         println!("Note: {}", self.music_note);
         println!("MIDI: {}", midi_note_number);

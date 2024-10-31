@@ -2,7 +2,7 @@ use async_trait::async_trait;
 
 use crate::{
     cli::Command,
-    convert::{midi_note_number_to_frequency, midi_note_number_to_music_note},
+    convert::{convert_midi_note_number_to_frequency, convert_midi_note_number_to_music_note},
     error::FNoteResult,
     parse::try_midi_note_number_from_str,
 };
@@ -21,9 +21,12 @@ impl Command for MidiCommand {
         println!("MIDI: {}", self.midi_note_number);
         println!(
             "Note: {}",
-            midi_note_number_to_music_note(self.midi_note_number).unwrap()
+            convert_midi_note_number_to_music_note(self.midi_note_number).unwrap()
         );
-        println!("Frequency: {}Hz", midi_note_number_to_frequency(self.midi_note_number));
+        println!(
+            "Frequency: {}Hz",
+            convert_midi_note_number_to_frequency(self.midi_note_number)
+        );
 
         Ok(())
     }

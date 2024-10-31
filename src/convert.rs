@@ -1,7 +1,7 @@
 use crate::error::{FNoteError, FNoteResult};
 
 /// Converts a frequency to the nearest MIDI note number.
-pub(crate) fn frequency_to_midi_note(frequency: f32) -> Option<u8> {
+pub(crate) fn convert_frequency_to_midi_note(frequency: f32) -> Option<u8> {
     let midi_note = 69.0 + 12.0 * (frequency / 440.0).log2();
     if (0..=127).contains(&(midi_note.round() as i32)) {
         Some(midi_note.round() as u8)
@@ -11,13 +11,13 @@ pub(crate) fn frequency_to_midi_note(frequency: f32) -> Option<u8> {
 }
 
 /// Converts a MIDI note number to a frequency (Hz).
-pub(crate) fn midi_note_number_to_frequency(midi_note_number: u8) -> f32 {
+pub(crate) fn convert_midi_note_number_to_frequency(midi_note_number: u8) -> f32 {
     let frequency = 440.0 * 2.0f32.powf((midi_note_number as f32 - 69.0) / 12.0);
     (frequency * 100.0).round() / 100.0
 }
 
 /// Converts a MIDI note number to a music note.
-pub(crate) fn midi_note_number_to_music_note(midi_note_number: u8) -> Option<String> {
+pub(crate) fn convert_midi_note_number_to_music_note(midi_note_number: u8) -> Option<String> {
     let semitone_to_note = ["C", "C#", "D", "Eb", "E", "F", "F#", "G", "Ab", "A", "Bb", "B"];
 
     let octave = (midi_note_number / 12) as i8 - 1;
@@ -28,7 +28,7 @@ pub(crate) fn midi_note_number_to_music_note(midi_note_number: u8) -> Option<Str
 }
 
 /// Converts a music note to a MIDI note number.
-pub(crate) fn music_note_to_midi_note_number(music_note: &str) -> FNoteResult<u8> {
+pub(crate) fn convert_music_note_to_midi_note_number(music_note: &str) -> FNoteResult<u8> {
     let note_to_semitone = [
         ("Cb", -1), // -1 instead of 11 because Cb = B, meaning decrement octave by 1
         ("C", 0),

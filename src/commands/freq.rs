@@ -2,7 +2,9 @@ use async_trait::async_trait;
 
 use crate::{
     cli::Command,
-    convert::{frequency_to_midi_note, midi_note_number_to_frequency, midi_note_number_to_music_note},
+    convert::{
+        convert_frequency_to_midi_note, convert_midi_note_number_to_frequency, convert_midi_note_number_to_music_note,
+    },
     error::FNoteResult,
     parse::try_frequency_from_str,
 };
@@ -18,10 +20,10 @@ pub struct FreqCommand {
 #[async_trait]
 impl Command for FreqCommand {
     async fn run(&self) -> FNoteResult<()> {
-        let midi_note_number = frequency_to_midi_note(self.frequency).unwrap();
-        let music_note = midi_note_number_to_music_note(midi_note_number).unwrap();
+        let midi_note_number = convert_frequency_to_midi_note(self.frequency).unwrap();
+        let music_note = convert_midi_note_number_to_music_note(midi_note_number).unwrap();
 
-        let frequency = midi_note_number_to_frequency(midi_note_number);
+        let frequency = convert_midi_note_number_to_frequency(midi_note_number);
         let difference = ((self.frequency - frequency) * 100.0).round() / 100.0;
         let sign = if difference >= 0.0 { "+" } else { "-" };
         let formatted_difference = if difference == 0.0 {
