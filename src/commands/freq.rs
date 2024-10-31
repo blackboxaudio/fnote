@@ -48,7 +48,6 @@ pub(crate) fn frequency_to_midi_note(frequency: f32) -> Option<u8> {
     }
 }
 
-// TODO: Would be create to support inputs with the unit appended e.g. 440Hz or 440 Hz
 fn try_frequency_from_str(arg: &str) -> FNoteResult<f32> {
     let regex = Regex::new(r"^\d+(\.\d+)?$").unwrap();
     if regex.is_match(arg) {

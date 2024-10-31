@@ -29,7 +29,6 @@ impl Command for NoteCommand {
     }
 }
 
-// TODO: Better UX for valid music notes outside of MIDI value range.
 /// Converts a music note to a MIDI note number.
 fn music_note_to_midi_note_number(music_note: &str) -> FNoteResult<u8> {
     let note_to_semitone = [
