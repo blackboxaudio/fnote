@@ -9,4 +9,7 @@ pub enum FNoteError {
 
     #[error("Invalid MIDI note number \"{0}\"")]
     InvalidMidiNoteNumber(String),
+
+    #[error("Invalid music note \"{0}\"")]
+    InvalidMusicNote(String),
 }

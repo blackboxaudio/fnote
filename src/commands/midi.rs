@@ -6,7 +6,7 @@ use crate::{
     error::{FNoteError, FNoteResult},
 };
 
-/// Extracts the frequency and musical note from a MIDI note number (0-127).
+/// Extracts the frequency and music note from a MIDI note number (0-127).
 #[derive(structopt::StructOpt)]
 pub struct MidiCommand {
     /// The MIDI note number to use.
