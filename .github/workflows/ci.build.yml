@@ -24,10 +24,10 @@ jobs:
               run: cargo build --release
 
             - name: Run (Note)
-              run: ./target/release note C4
+              run: ./target/release/fnote note C4
 
             - name: Run (MIDI)
-              run: ./target/release midi 60
+              run: ./target/release/fnote midi 60
 
             - name: Run (Frequency)
-              run: ./target/release freq 261.63
+              run: ./target/release/fnote freq 261.63
