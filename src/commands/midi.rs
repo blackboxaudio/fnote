@@ -27,6 +27,7 @@ impl Command for MidiCommand {
     }
 }
 
+/// Converts a MIDI note number to a music note.
 fn midi_note_number_to_music_note(midi_note_number: u8) -> Option<String> {
     let semitone_to_note = ["C", "C#", "D", "Eb", "E", "F", "F#", "G", "Ab", "A", "Bb", "B"];
 
