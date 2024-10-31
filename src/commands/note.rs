@@ -23,7 +23,7 @@ impl Command for NoteCommand {
 
         println!("Note: {}", self.music_note);
         println!("MIDI: {}", midi_note_number);
-        println!("Frequency: {} Hz", frequency);
+        println!("Frequency: {}Hz", frequency);
 
         Ok(())
     }

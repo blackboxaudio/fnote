@@ -1,7 +1,7 @@
 use async_trait::async_trait;
 
 use crate::{
-    commands::{midi::MidiCommand, note::NoteCommand},
+    commands::{freq::FreqCommand, midi::MidiCommand, note::NoteCommand},
     error::FNoteResult,
 };
 
@@ -24,6 +24,9 @@ pub enum FNoteCommand {
 
     /// Extracts the frequency and MIDI note number from a music note (e.g. C5).
     Note(NoteCommand),
+
+    /// Extracts the (nearest) MIDI note number and music note from a frequency (e.g. 440).
+    Freq(FreqCommand),
 }
 
 #[async_trait]
@@ -32,6 +35,7 @@ impl Command for FNoteCommand {
         match self {
             Self::Midi(cmd) => cmd.run().await,
             Self::Note(cmd) => cmd.run().await,
+            Self::Freq(cmd) => cmd.run().await,
         }
     }
 }

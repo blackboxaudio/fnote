@@ -7,6 +7,9 @@ pub enum FNoteError {
     #[error("Unknown command")]
     UnknownCommand,
 
+    #[error("Invalid frequency \"{0}\"")]
+    InvalidFrequency(String),
+
     #[error("Invalid MIDI note number \"{0}\"")]
     InvalidMidiNoteNumber(String),
 

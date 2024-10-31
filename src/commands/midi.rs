@@ -22,7 +22,7 @@ impl Command for MidiCommand {
             "Note: {}",
             midi_note_number_to_music_note(self.midi_note_number).unwrap()
         );
-        println!("Frequency: {} Hz", midi_note_number_to_frequency(self.midi_note_number));
+        println!("Frequency: {}Hz", midi_note_number_to_frequency(self.midi_note_number));
 
         Ok(())
     }
