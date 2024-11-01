@@ -14,14 +14,21 @@ It is easier to run this tool than to search for the information everytime.
 ## Getting Started 
 
 Clone this repository:
+
 ```bash
-git clone https://github.com/blackboxaudio/fnote
-cd fnote/
+git clone https://github.com/blackboxaudio/fnote && cd fnote/
 ```
 
-Build and run the CLI tool:
+Build and install the program:
+
 ```bash
-cargo run --release -- midi 60
+cargo install --path .
+```
+
+Example usage:
+
+```bash
+fnote midi 60
 
 # MIDI: 60
 # Note: C4
