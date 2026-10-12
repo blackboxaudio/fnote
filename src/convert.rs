@@ -24,7 +24,7 @@ pub(crate) fn convert_midi_note_number_to_music_note(midi_note_number: u8) -> Op
     let semitone_offset = (midi_note_number % 12) as usize;
     let note = semitone_to_note.get(semitone_offset).unwrap();
 
-    Some(format!("{}{}", note, octave))
+    Some(format!("{note}{octave}"))
 }
 
 /// Converts a music note to a MIDI note number.
